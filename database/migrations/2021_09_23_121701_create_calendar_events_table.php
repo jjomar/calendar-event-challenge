@@ -16,7 +16,7 @@ class CreateCalendarEventsTable extends Migration
         Schema::create('t_calendar_events', function (Blueprint $table) {
             $table->id();
             $table->string('event_description');
-            $table->date('event_date');
+            $table->date('event_date')->unique();
         });
     }
 

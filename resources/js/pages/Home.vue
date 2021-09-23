@@ -9,7 +9,7 @@
             <Filters />
         </div>
         <div class="col-sm-8">
-            <Calendar />
+            <Calendar :eventsProps="this.events"/>
         </div>
     </div>
 </template>
@@ -25,6 +25,19 @@ export default {
         Header,
         Filters,
         Calendar
+    },
+    data() {
+        return {
+            events: [
+                { title: 'event 1', date: '2021-09-20' },
+                { title: 'event 2', date: '2021-09-22' }
+            ]
+        }
+    },
+    methods: {
+        getEvents() {
+            
+        }
     }
 }
 </script>

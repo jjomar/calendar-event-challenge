@@ -15,6 +15,9 @@ export default {
     components: {
         FullCalendar
     },
+    props: {
+        eventsProps: Array
+    },
     data() {
         return {
             calendarOptions: {
@@ -23,12 +26,8 @@ export default {
                 ],
                 initialView: 'dayGridMonth',
                 themeSystem: 'bootstrap',
-                allDaySlot: false,
                 weekends: true,
-                events: [
-                    // { title: 'event 1', date: '2021-09-20' },
-                    // { title: 'event 2', date: '2021-09-22' }
-                ]
+                events: this.eventsProps
             }
         }
   },
