@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogicLayer\CalendarEventsLogic;
+use App\Http\Requests\SaveEventsRequest;
 
 class CalendarEvents extends Controller
 {
@@ -14,8 +15,10 @@ class CalendarEvents extends Controller
         $this->calendarEventsLogic = new CalendarEventsLogic();
     }
 
-    public function saveEvents(Request $request)
+    public function saveEvents(SaveEventsRequest $request)
     {
+        $request->validated();
+
         return response($this->calendarEventsLogic->saveEvents($request->all()));
     }
 

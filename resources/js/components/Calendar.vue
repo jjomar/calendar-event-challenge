@@ -18,6 +18,11 @@ export default {
     props: {
         eventsProps: Array
     },
+    watch: {
+        eventsProps(newVal) {
+            return this.calendarOptions.events = newVal;
+        }
+    },
     data() {
         return {
             calendarOptions: {
@@ -27,13 +32,16 @@ export default {
                 initialView: 'dayGridMonth',
                 themeSystem: 'bootstrap',
                 weekends: true,
+                eventDidMount: function(info) {
+                    info.el.setAttribute('data-bs-toggle', 'tooltip');
+                    info.el.setAttribute('data-bs-placement', 'top');
+                    info.el.setAttribute('title', info.event.title);
+
+                    new bootstrap.Tooltip(info.el);
+                },
                 events: this.eventsProps
             }
         }
   },
 }
 </script>
-
-<style scoped>
-
-</style>

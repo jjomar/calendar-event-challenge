@@ -4,7 +4,7 @@
             <label for="event-description" class="form-label">Event</label>
             <div class="input-group">
                 <input type="text" class="form-control" id="event-description" v-model="eventDescription">
-                <span class="input-group-text"></span>
+                <span class="input-group-text"><i class="bi bi-text-left"></i></span>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <button @click="saveDates()" type="button" class="btn btn-primary" id="save">Save</button>
+            <button @click="saveEvents()" type="button" class="btn btn-primary" id="save">Save</button>
         </div>
     </div>
 </template>
@@ -58,6 +58,7 @@
 <script>
 export default {
     name: 'Filters',
+    emits: ['save-events'],
     data() {
         return {
             eventDescription: '',
@@ -67,7 +68,7 @@ export default {
         }
     },
     methods: {
-        saveDates() {
+        saveEvents() {
             let formData = new FormData();
             formData.append('eventDescription', this.eventDescription);
             formData.append('startDate', this.startDate);
@@ -79,11 +80,7 @@ export default {
                 body: formData
             }).then(response => response.json())
             .then(data => {
-                if (data.result) {
-                    return 'Show toast';
-                }
-
-                return alert('Something went wrong, please check logs!');
+                return this.$emit('save-events', data);
             });
         }
     }

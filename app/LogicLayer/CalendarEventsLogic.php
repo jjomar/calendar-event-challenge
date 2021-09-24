@@ -15,7 +15,7 @@ class CalendarEventsLogic
     public function saveEvents(array $requestParams)
     {
         $eventDescription = $requestParams['eventDescription'];
-        $dayOfWeeks = explode(',', $requestParams['dayOfWeeks']);
+        $dayOfWeeks = $requestParams['dayOfWeeks'];
 
         $period = CarbonPeriod::create($requestParams['startDate'], $requestParams['endDate'])
         ->filter(function ($date) use ($dayOfWeeks) {
@@ -35,7 +35,7 @@ class CalendarEventsLogic
             $upsert = false;
         }
 
-        return ['result' => $upsert, 'eventList' => $eventList];
+        return ['result' => $upsert, 'eventList' => $this->getEvents()];
     }
 
     public function getEvents()
