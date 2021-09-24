@@ -30,12 +30,13 @@ class SaveEventsRequest extends FormRequest
             'eventDescription' => 'required|max:255',
             'startDate' => 'required|date',
             'endDate' => 'required|date|after_or_equal:startDate',
-            'dayOfWeeks' => ['required', 'array',  Rule::in([0, 1, 2, 3, 4, 5, 6])]
+            'dayOfWeeks' => ['required', 'array',  Rule::in([0, 1, 2, 3, 4, 5, 6])] //0 = Sunday incremented by 1 up to 6 which is Saturday
         ];
     }
 
     protected function prepareForValidation(): void
     {
+        //since dayOfWeeks would be a string delimited by comma, explode into an array
         $this->merge([
             'dayOfWeeks' => explode(',', $this->input('dayOfWeeks'))
         ]);

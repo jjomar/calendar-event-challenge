@@ -44493,6 +44493,9 @@ var routes = [{
   name: 'home',
   path: '/',
   component: _pages_Home__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: "/:catchAll(.*)",
+  component: _pages_Home__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createWebHistory)(),

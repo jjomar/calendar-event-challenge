@@ -7,6 +7,10 @@ export const routes = [
         name: 'home',
         path: '/',
         component: Home
+    },
+    {
+        path: "/:catchAll(.*)",
+        component: Home
     }
 ];
 
